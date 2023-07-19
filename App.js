@@ -1,35 +1,35 @@
 import React, { useState } from "react";
-import {
-  TextInput,
-  View,
-  StyleSheet,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
+
 import Login from "./Screens/Login";
+import Welcome from "./Screens/Welcome";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Register from "./Screens/register";
+import Home from "./Screens/Home";
 
 const MyTextInput = () => {
+  const Stack = createNativeStackNavigator();
+
   const [text, setText] = useState("");
 
   const handleTextChange = (inputText) => {
     setText(inputText);
   };
 
-  return <Login />;
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="welcome" component={Welcome} />
+        <Stack.Screen name="login" component={Login} />
+        <Stack.Screen name="register" component={Register} />
+        <Stack.Screen name="home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    paddingHorizontal: 20,
-  },
-  input: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    paddingHorizontal: 10,
-  },
-});
 
 export default MyTextInput;

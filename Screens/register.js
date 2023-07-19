@@ -5,32 +5,43 @@ import {
   SafeAreaView,
   Text,
   TextInput,
+  TouchableHighlight,
+  TouchableNativeFeedback,
   View,
 } from "react-native";
-import { Entypo } from "@expo/vector-icons";
+import { Entypo, AntDesign, FontAwesome } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
-import Spinner from "react-native-loading-spinner-overlay";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
+import Spinner from "react-native-loading-spinner-overlay";
 
-const Login = ({ navigation }) => {
+const Register = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
 
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [isLoading, setLoading] = useState(false);
 
-  const login = () => {
-    setLoading(true);
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        setLoading(false);
-        return navigation.navigate("home");
-      })
-      .catch((err) => {
-        alert(err.code);
-        setLoading(false);
+  const registerUser = async () => {
+    try {
+      setLoading(true);
+      await createUserWithEmailAndPassword(auth, email, password);
+
+      await updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL:
+          auth.currentUser.photoURL ||
+          "https://previews.123rf.com/images/djvstock/djvstock1709/djvstock170910745/86471694-lawyer-icon-over-white-background-colorful-design-vector-illustration.jpg",
       });
+      setLoading(false);
+      return navigation.navigate("home");
+    } catch (error) {
+      setLoading(false);
+      alert(error.code);
+      console.log(error);
+    }
   };
 
   return (
@@ -48,7 +59,7 @@ const Login = ({ navigation }) => {
         <View style={{ flex: 1 }}>
           <Image
             source={{
-              uri: "https://img.freepik.com/free-vector/content-team-concept-illustration_114360-4397.jpg",
+              uri: "https://img.freepik.com/free-vector/remote-meeting-concept-illustration_114360-4704.jpg",
             }}
             style={{
               width: "100%",
@@ -57,12 +68,32 @@ const Login = ({ navigation }) => {
             }}
           />
         </View>
-        <View style={{ flex: 1, top: 40 }}>
+        <View style={{ flex: 1, top: 20 }}>
           <View style={{ alignSelf: "center", padding: 0, margin: 0 }}>
-            <Text style={{ fontSize: 24, fontWeight: "bold" }}>Login</Text>
+            <Text style={{ fontSize: 24, fontWeight: "bold" }}>Sign up</Text>
           </View>
 
           <View style={{ paddingHorizontal: 40, gap: 40 }}>
+            <View
+              style={{
+                top: 20,
+                flexDirection: "row",
+                gap: 10,
+                alignItems: "center",
+                borderBottomColor: "charcoal",
+                borderBottomWidth: 1,
+                paddingBottom: 10,
+              }}
+            >
+              <FontAwesome name="user" size={18} color="black" />
+              <TextInput
+                placeholder="full name..."
+                fontSize={18}
+                style={{ width: "90%" }}
+                value={name}
+                onChangeText={(value) => setName(value)}
+              />
+            </View>
             <View
               style={{
                 top: 20,
@@ -121,16 +152,17 @@ const Login = ({ navigation }) => {
               )}
             </View>
             <TouchableOpacity
-              style={{ color: "#00ff", flexDirection: "row" }}
-              onPress={() => navigation.navigate("register")}
+              style={{ color: "#00ff", flexDirection: "row", gap: 5 }}
+              onPress={() => navigation.navigate("login")}
             >
-              <Text>Create a new </Text>
-              <Text style={{ color: "#000099" }}>Account</Text>
+              <Text>Already have an account</Text>
+              <Text style={{ color: "#000099" }}>Login</Text>
             </TouchableOpacity>
           </View>
+
           <View style={{ alignItems: "center", top: 60 }}>
             <TouchableOpacity
-              onPress={login}
+              onPress={registerUser}
               style={{
                 backgroundColor: "#000",
                 padding: 15,
@@ -138,7 +170,7 @@ const Login = ({ navigation }) => {
                 borderRadius: 5,
               }}
             >
-              <Text style={{ color: "white" }}>Log In</Text>
+              <Text style={{ color: "white" }}>Create Account</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -147,4 +179,4 @@ const Login = ({ navigation }) => {
   );
 };
 
-export default Login;
+export default Register;
