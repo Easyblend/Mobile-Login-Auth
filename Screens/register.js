@@ -58,9 +58,7 @@ const Register = ({ navigation }) => {
       <View style={{ flex: 1, justifyContent: "center" }}>
         <View style={{ flex: 1 }}>
           <Image
-            source={{
-              uri: "https://img.freepik.com/free-vector/remote-meeting-concept-illustration_114360-4704.jpg",
-            }}
+            source={require("../assets/illustration-2.jpg")}
             style={{
               width: "100%",
               height: "100%",
