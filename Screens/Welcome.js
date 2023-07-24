@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useLayoutEffect } from "react";
 import {
   Image,
   ImageBackground,
@@ -8,8 +8,23 @@ import {
   View,
 } from "react-native";
 import { Entypo, Feather } from "@expo/vector-icons";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../config/firebaseConfig";
+import { useNavigation } from "@react-navigation/native";
 
-const Welcome = ({ navigation }) => {
+const Welcome = () => {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        navigation.navigate("Home");
+      }
+    });
+
+    return unsubscribe;
+  }, []);
+
   return (
     <ImageBackground
       style={{ flex: 1 }}
