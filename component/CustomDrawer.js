@@ -1,6 +1,6 @@
 import { signOut } from "firebase/auth";
 import React, { useEffect } from "react";
-import { Image } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import { View, Text, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
@@ -31,6 +31,11 @@ const CustomDrawer = (props) => {
     }
   }, [data, props.navigation]);
 
+  const isItemActive = (routeName) => {
+    const currentRouteName = props.state.routes[props.state.index].name;
+    return routeName === currentRouteName;
+  };
+
   return (
     <View style={{ flex: 1, paddingVertical: 20 }}>
       <DrawerContentScrollView {...props} style={{ flex: 1, height: "100%" }}>
@@ -54,63 +59,132 @@ const CustomDrawer = (props) => {
           </View>
         </TouchableOpacity>
 
-        <View style={{ borderColor: "#ddd", borderWidth: 2 }}></View>
-        <View style={{ top: 20 }}>
+        <View style={{ borderColor: "#ddd", borderWidth: 1 }}></View>
+        <View style={{ top: 20, gap: 15 }}>
           <DrawerItem
             label="Home"
             activeTintColor="black"
             activeBackgroundColor="white"
-            icon={({ color, size }) => (
-              <FontAwesome name="home" size={24} color={color} />
+            icon={() => (
+              <FontAwesome
+                name="home"
+                size={27}
+                style={{ marginRight: -10 }}
+                color="#888"
+              />
             )}
             onPress={() => props.navigation.navigate("Home")}
+            labelStyle={
+              isItemActive("Home") ? styles.activeLabel : styles.inactiveLabel
+            }
+            style={
+              isItemActive("Home") ? styles.activeItem : styles.inactiveItem
+            }
           />
           <DrawerItem
             label="Create Legal Docs"
             activeTintColor="black"
             activeBackgroundColor="white"
-            icon={({ color, size }) => (
-              <FontAwesome name="files-o" size={24} color={color} />
+            icon={() => (
+              <FontAwesome
+                name="files-o"
+                size={27}
+                color="#888"
+                style={{ marginRight: -10 }}
+              />
             )}
-            onPress={() => props.navigation.navigate("Home")}
+            onPress={() => props.navigation.navigate("CreateDoc")}
+            labelStyle={
+              isItemActive("CreateDoc")
+                ? styles.activeLabel
+                : styles.inactiveLabel
+            }
+            style={
+              isItemActive("CreateDoc")
+                ? styles.activeItem
+                : styles.inactiveItem
+            }
           />
           <DrawerItem
             label="Speaker to a Lawyer"
             activeTintColor="black"
             activeBackgroundColor="white"
-            icon={({ color, size }) => (
-              <FontAwesome name="wechat" size={24} color={color} />
+            icon={() => (
+              <FontAwesome
+                name="wechat"
+                size={27}
+                style={{ marginRight: -10 }}
+                color="#888"
+              />
             )}
-            onPress={() => props.navigation.navigate("Home")}
+            onPress={() => props.navigation.navigate("SpeakToLawyer")}
+            labelStyle={
+              isItemActive("SpeakToLawyer")
+                ? styles.activeLabel
+                : styles.inactiveLabel
+            }
+            style={
+              isItemActive("SpeakToLawyer")
+                ? styles.activeItem
+                : styles.inactiveItem
+            }
           />
           <DrawerItem
-            label="Setting"
+            label="Settings"
             activeTintColor="black"
             activeBackgroundColor="white"
-            icon={({ color, size }) => (
-              <FontAwesome name="gear" size={24} color={color} />
+            icon={() => (
+              <FontAwesome
+                name="gear"
+                size={27}
+                style={{ marginRight: -10 }}
+                color="#888"
+              />
             )}
             onPress={() => props.navigation.navigate("Setting")}
+            labelStyle={
+              isItemActive("Setting")
+                ? styles.activeLabel
+                : styles.inactiveLabel
+            }
+            style={
+              isItemActive("Setting") ? styles.activeItem : styles.inactiveItem
+            }
           />
         </View>
       </DrawerContentScrollView>
 
-      <View style={{ padding: 20, borderTopColor: "#ddd", borderTopWidth: 2 }}>
+      <View style={{ padding: 30, borderTopColor: "#ddd", borderTopWidth: 2 }}>
         <TouchableOpacity
           style={{
             flexDirection: "row",
             alignItems: "flex-end",
             justifyContent: "center",
-            gap: 20,
+            gap: 10,
           }}
           onPress={sign_Out}
         >
-          <FontAwesome name="sign-out" size={20} color="#aaa" />
-          <Text style={{ fontSize: 18 }}>sign Out</Text>
+          <FontAwesome name="sign-out" size={24} color="#c62828" />
+          <Text style={{ fontSize: 20, color: "#c62828" }}>sign Out</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  activeItem: {
+    backgroundColor: "#00b4fc",
+  },
+  inactiveItem: {
+    backgroundColor: "transparent",
+  },
+  activeLabel: {
+    color: "#fff",
+  },
+  inactiveLabel: {
+    color: "#000",
+  },
+});
 
 export default CustomDrawer;

@@ -13,6 +13,8 @@ import { View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import Setting from "./Screens/Setting";
 import userHook, { useCustomContextProvider } from "./Screens/Utils/userHook";
+import CreateDoc from "./Screens/CreateDoc";
+import SpeakToLawyer from "./Screens/SpeakToLawyer";
 
 const MyTextInput = () => {
   const [singIn, setSignIn] = useState(false);
@@ -84,6 +86,26 @@ const MyTextInput = () => {
               <FontAwesome name="sign-in" size={24} color="#aaa" />
             ),
             swipeEnabled: false,
+          }}
+        />
+        <Drawer.Screen
+          key="CreateDoc"
+          name="CreateDoc"
+          component={CreateDoc}
+          options={{
+            drawerIcon: ({ color }) => (
+              <FontAwesome name="files-o" size={24} color="#aaa" />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          key="SpeakToLawyer"
+          name="SpeakToLawyer"
+          component={SpeakToLawyer}
+          options={{
+            drawerIcon: ({ color }) => (
+              <FontAwesome name="files-o" size={24} color="#aaa" />
+            ),
           }}
         />
       </Drawer.Navigator>
