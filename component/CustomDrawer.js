@@ -130,6 +130,28 @@ const CustomDrawer = (props) => {
             }
           />
           <DrawerItem
+            label="Law News"
+            activeTintColor="black"
+            activeBackgroundColor="white"
+            icon={() => (
+              <FontAwesome
+                name="newspaper-o"
+                size={27}
+                style={{ marginRight: -10 }}
+                color="#888"
+              />
+            )}
+            onPress={() => props.navigation.navigate("lawNews")}
+            labelStyle={
+              isItemActive("lawNews")
+                ? styles.activeLabel
+                : styles.inactiveLabel
+            }
+            style={
+              isItemActive("lawNews") ? styles.activeItem : styles.inactiveItem
+            }
+          />
+          <DrawerItem
             label="Settings"
             activeTintColor="black"
             activeBackgroundColor="white"

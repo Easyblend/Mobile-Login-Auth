@@ -25,8 +25,12 @@ const CustomerInquiriesPage = ({ navigation }) => {
   const handleSubmit = () => {
     // Handle form submission here, e.g., send data to a backend server
     // For demonstration purposes, we'll just log the data
-    console.log("Name:", name);
-    console.log("Question:", question);
+    // console.log("Name:", name);
+    // console.log("Question:", question);
+    alert(`${name} ${question} 
+    SUBMITTED`);
+
+    navigation.navigate("Home");
   };
 
   return (

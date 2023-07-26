@@ -64,7 +64,7 @@ const Login = ({ navigation }) => {
     >
       <Spinner
         visible={isLoading}
-        textContent={"Loading..."}
+        textContent={"Logging you in"}
         textStyle={{ color: "#fff" }}
         overlayColor="rgba(0,0,0,0.93)"
       />

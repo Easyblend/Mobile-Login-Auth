@@ -15,6 +15,7 @@ import Setting from "./Screens/Setting";
 import userHook, { useCustomContextProvider } from "./Screens/Utils/userHook";
 import CreateDoc from "./Screens/CreateDoc";
 import SpeakToLawyer from "./Screens/SpeakToLawyer";
+import lawNews from "./Screens/LawNews";
 
 const MyTextInput = () => {
   const [singIn, setSignIn] = useState(false);
@@ -102,6 +103,16 @@ const MyTextInput = () => {
           key="SpeakToLawyer"
           name="SpeakToLawyer"
           component={SpeakToLawyer}
+          options={{
+            drawerIcon: ({ color }) => (
+              <FontAwesome name="files-o" size={24} color="#aaa" />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          key="lawNews"
+          name="lawNews"
+          component={lawNews}
           options={{
             drawerIcon: ({ color }) => (
               <FontAwesome name="files-o" size={24} color="#aaa" />

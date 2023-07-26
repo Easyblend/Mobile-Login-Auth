@@ -7,7 +7,6 @@ import Spinner from "react-native-loading-spinner-overlay";
 import { LawyerForms } from "../component/LawyerForms";
 import { ClientForms } from "../component/ClientForms";
 import * as DocumentPicker from "expo-document-picker";
-import NavBottom from "../component/Sidebar";
 import { useNavigation } from "@react-navigation/native";
 
 // import { GoogleSignin } from "@react-native-google-signin/google-signin";
@@ -101,7 +100,7 @@ const Register = () => {
     >
       <Spinner
         visible={isLoading}
-        textContent={"Loading..."}
+        textContent={"signing you in"}
         textStyle={{ color: "#fff" }}
         overlayColor="rgba(0,0,0,0.93)"
       />
