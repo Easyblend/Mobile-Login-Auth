@@ -2,8 +2,10 @@ import React from "react";
 import { View, Text } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
 const CustomDocumentList = ({ name, icon }) => {
+  const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={{
@@ -13,11 +15,11 @@ const CustomDocumentList = ({ name, icon }) => {
         justifyContent: "flex-start",
         padding: 35,
         gap: 20,
-
         marginVertical: 10,
         borderRadius: 15,
         backgroundColor: "#005bc5",
       }}
+      onPress={() => navigation.navigate("documentForm", { name })}
     >
       <FontAwesome name={icon} size={20} color="#fff" />
       <Text style={{ fontSize: 18, color: "#fff" }}>{name}</Text>

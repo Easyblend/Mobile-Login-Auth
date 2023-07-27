@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import userHook, { useCustomContextProvider } from "./Utils/userHook";
+import userHook from "../Utils/userHook";
 
 const Home = ({ navigation }) => {
   const { data } = userHook();

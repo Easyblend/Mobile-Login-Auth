@@ -44,7 +44,7 @@ const CreateDoc = ({ navigation }) => {
         style={{
           flex: 1,
           alignItems: "center",
-          top: 120,
+          top: 90,
           marginHorizontal: 20,
         }}
       >

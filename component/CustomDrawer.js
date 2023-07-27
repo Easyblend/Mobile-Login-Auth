@@ -4,10 +4,8 @@ import { Image, StyleSheet } from "react-native";
 import { View, Text, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
-import userHook from "../Screens/Utils/userHook";
+import userHook from "../Utils/userHook";
 import { auth } from "../config/firebaseConfig";
-import Setting from "../Screens/Setting";
-import Home from "../Screens/Home";
 
 const CustomDrawer = (props) => {
   const { data } = userHook();
