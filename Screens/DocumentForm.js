@@ -14,6 +14,7 @@ import Form_3 from "../component/AgreementForms/Form-3";
 const DocumentForm = ({ route }) => {
   const [formPage, setFormPage] = useState(1);
   const [party, setParty] = useState(1);
+  const [partyData, setPartyData] = useState([]);
 
   const handleSubmit = () => {
     setFormPage(formPage + 1);
@@ -46,6 +47,8 @@ const DocumentForm = ({ route }) => {
             party={party}
             setParty={setParty}
             unhandleSubmit={unhandleSubmit}
+            partyData={partyData}
+            setPartyData={setPartyData}
           />
         ) : formPage === 3 ? (
           <Form_3
@@ -53,6 +56,8 @@ const DocumentForm = ({ route }) => {
             party={party}
             setParty={setParty}
             unhandleSubmit={unhandleSubmit}
+            partyData={partyData}
+            setPartyData={setPartyData}
           />
         ) : (
           ""

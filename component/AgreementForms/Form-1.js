@@ -1,7 +1,25 @@
+import { Picker } from "@react-native-picker/picker";
 import React from "react";
-import { View, Text, TouchableOpacity, TextInput } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 const Form_1 = ({ handleSubmit, setParty, party }) => {
+  const options = [
+    { label: "1", value: "1" },
+    { label: "2", value: "2" },
+    { label: "3", value: "3" },
+    { label: "4", value: "4" },
+    { label: "5", value: "5" },
+    { label: "6", value: "6" },
+    { label: "7", value: "7" },
+    { label: "8", value: "8" },
+    // Add more options as needed
+  ];
+
+  // Event handler for when the value is changed
+  const onValueChange = (itemValue, itemIndex) => {
+    setParty(itemValue);
+  };
+
   return (
     <View
       style={{
@@ -14,28 +32,21 @@ const Form_1 = ({ handleSubmit, setParty, party }) => {
     >
       <Text style={{ fontSize: 20 }}>Number of parties involved</Text>
 
-      <TextInput
-        placeholder="eg 3 ...."
-        inputMode="numeric"
-        value={party}
-        onChangeText={(value) => setParty(value)}
-        maxLength={1}
-        style={{
-          marginLeft: 10,
-          height: 45,
-          borderColor: "#ccc",
-          borderWidth: 1,
-          borderRadius: 5,
-          padding: 8,
-          width: "100%",
-        }}
-      />
-      <Text style={{ textAlign: "justify", color: "#555" }}>
-        The names and contact information of all parties involved in the
-        agreement. Typically, this includes the disclosing party (the one
-        sharing confidential information) and the receiving party (the one
-        receiving the information).
-      </Text>
+      <View>
+        <Picker selectedValue={party} onValueChange={onValueChange}>
+          {options.map((option) => (
+            <Picker.Item
+              key={option.value}
+              label={option.label}
+              value={option.value}
+            />
+          ))}
+        </Picker>
+        <Text style={{ textAlign: "center" }}>
+          The number of Parties involved in the Disclosure Agreement. This
+          includes you !
+        </Text>
+      </View>
       <TouchableOpacity
         onPress={handleSubmit}
         style={{

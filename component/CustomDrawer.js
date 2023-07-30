@@ -46,7 +46,7 @@ const CustomDrawer = (props) => {
                 width: 60,
                 borderColor: "#ccc",
                 borderWidth: 1,
-                borderRadius: 1000,
+                borderRadius: 1444,
               }}
             />
             <Text style={{ fontSize: 20 }}>{data?.displayName}</Text>
@@ -61,14 +61,12 @@ const CustomDrawer = (props) => {
         <View style={{ top: 20, gap: 15 }}>
           <DrawerItem
             label="Home"
-            activeTintColor="black"
-            activeBackgroundColor="white"
             icon={() => (
               <FontAwesome
                 name="home"
                 size={27}
                 style={{ marginRight: -10 }}
-                color="#888"
+                color="#444"
               />
             )}
             onPress={() => props.navigation.navigate("Home")}
@@ -81,13 +79,11 @@ const CustomDrawer = (props) => {
           />
           <DrawerItem
             label="Create Legal Docs"
-            activeTintColor="black"
-            activeBackgroundColor="white"
             icon={() => (
               <FontAwesome
                 name="files-o"
                 size={27}
-                color="#888"
+                color="#444"
                 style={{ marginRight: -10 }}
               />
             )}
@@ -105,14 +101,12 @@ const CustomDrawer = (props) => {
           />
           <DrawerItem
             label="Speaker to a Lawyer"
-            activeTintColor="black"
-            activeBackgroundColor="white"
             icon={() => (
               <FontAwesome
                 name="wechat"
                 size={27}
                 style={{ marginRight: -10 }}
-                color="#888"
+                color="#444"
               />
             )}
             onPress={() => props.navigation.navigate("SpeakToLawyer")}
@@ -129,14 +123,12 @@ const CustomDrawer = (props) => {
           />
           <DrawerItem
             label="Law News"
-            activeTintColor="black"
-            activeBackgroundColor="white"
             icon={() => (
               <FontAwesome
                 name="newspaper-o"
                 size={27}
                 style={{ marginRight: -10 }}
-                color="#888"
+                color="#444"
               />
             )}
             onPress={() => props.navigation.navigate("lawNews")}
@@ -151,14 +143,12 @@ const CustomDrawer = (props) => {
           />
           <DrawerItem
             label="Settings"
-            activeTintColor="black"
-            activeBackgroundColor="white"
             icon={() => (
               <FontAwesome
                 name="gear"
                 size={27}
                 style={{ marginRight: -10 }}
-                color="#888"
+                color="#444"
               />
             )}
             onPress={() => props.navigation.navigate("Setting")}
@@ -203,7 +193,7 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   inactiveLabel: {
-    color: "#000",
+    color: "#444",
   },
 });
 

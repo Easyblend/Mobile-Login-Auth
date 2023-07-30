@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
 
-const Form_2 = ({ handleSubmit, unhandleSubmit, party, setParty }) => {
-  const [partyData, setPartyData] = useState([]);
-
+const Form_2 = ({
+  handleSubmit,
+  unhandleSubmit,
+  party,
+  partyData,
+  setPartyData,
+}) => {
   useEffect(() => {
     setPartyData(Array.from({ length: party }, () => ""));
   }, [party]);
@@ -49,7 +53,11 @@ const Form_2 = ({ handleSubmit, unhandleSubmit, party, setParty }) => {
         receiving the information).
       </Text>
       <TouchableOpacity
-        onPress={handleSubmit}
+        onPress={
+          partyData[0] != ""
+            ? handleSubmit
+            : () => alert("enter Names of participants")
+        }
         style={{
           marginTop: 10,
           backgroundColor: "#0084fc",
