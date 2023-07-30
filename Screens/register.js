@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Image, KeyboardAvoidingView, View } from "react-native";
 
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "../config/firebaseConfig";
+import { auth, db, storage } from "../config/firebaseConfig";
 import Spinner from "react-native-loading-spinner-overlay";
 import { LawyerForms } from "../component/LawyerForms";
 import { ClientForms } from "../component/ClientForms";
 import * as DocumentPicker from "expo-document-picker";
 import { useNavigation } from "@react-navigation/native";
+import { addDoc, collection } from "firebase/firestore";
 
 // import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
@@ -33,26 +34,26 @@ const Register = () => {
   //   console.log(resp);
   // };
 
-  const signUPlawyer = async () => {
-    try {
-      setLoading(true);
-      await createUserWithEmailAndPassword(auth, email, password);
+  // const signUPlawyer = async () => {
+  //   try {
+  //     setLoading(true);
+  //     await createUserWithEmailAndPassword(auth, email, password);
 
-      await updateProfile(auth.currentUser, {
-        displayName: name,
-        photoURL:
-          auth.currentUser.photoURL ||
-          "https://previews.123rf.com/images/djvstock/djvstock1709/djvstock170910745/86471694-lawyer-icon-over-white-background-colorful-design-vector-illustration.jpg",
-      });
+  //     await updateProfile(auth.currentUser, {
+  //       displayName: name,
+  //       photoURL:
+  //         auth.currentUser.photoURL ||
+  //         "https://previews.123rf.com/images/djvstock/djvstock1709/djvstock170910745/86471694-lawyer-icon-over-white-background-colorful-design-vector-illustration.jpg",
+  //     });
 
-      setLoading(false);
-      return navigation.navigate("Home");
-    } catch (error) {
-      setLoading(false);
-      alert(error.code);
-      console.log(error);
-    }
-  };
+  //     setLoading(false);
+  //     return navigation.navigate("Home");
+  //   } catch (error) {
+  //     setLoading(false);
+  //     alert(error.code);
+  //     console.log(error);
+  //   }
+  // };
 
   //Pick file
   const pickDocument = async () => {
@@ -74,22 +75,41 @@ const Register = () => {
   };
 
   const registerUser = async () => {
-    try {
-      setLoading(true);
-      await createUserWithEmailAndPassword(auth, email, password);
+    if (fileUri || !isLawyer) {
+      try {
+        setLoading(true);
+        await createUserWithEmailAndPassword(auth, email, password);
 
-      await updateProfile(auth.currentUser, {
-        displayName: name,
-        photoURL:
-          auth.currentUser.photoURL ||
-          "https://previews.123rf.com/images/djvstock/djvstock1709/djvstock170910745/86471694-lawyer-icon-over-white-background-colorful-design-vector-illustration.jpg",
-      });
-      setLoading(false);
-      return navigation.navigate("Home");
-    } catch (error) {
-      setLoading(false);
-      alert(error.code);
-      console.log(error);
+        await updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL:
+            auth.currentUser.photoURL ||
+            "https://previews.123rf.com/images/djvstock/djvstock1709/djvstock170910745/86471694-lawyer-icon-over-white-background-colorful-design-vector-illustration.jpg",
+        });
+
+        if (isLawyer) {
+          const mountainsRef = ref(storage, "mountains.jpg");
+
+          await addDoc(collection(db, "User"), {
+            name,
+            email,
+            isLawyer,
+          });
+        } else {
+          await addDoc(collection(db, "User"), {
+            name,
+            email,
+            isLawyer,
+          });
+        }
+
+        setLoading(false);
+        return navigation.navigate("Home");
+      } catch (error) {
+        setLoading(false);
+
+        console.log(error);
+      }
     }
   };
 

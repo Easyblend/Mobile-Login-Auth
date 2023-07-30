@@ -48,7 +48,12 @@ const DocumentForm = ({ route }) => {
             unhandleSubmit={unhandleSubmit}
           />
         ) : formPage === 3 ? (
-          <Form_3 handleSubmit={handleSubmit} setParty={setParty} />
+          <Form_3
+            handleSubmit={handleSubmit}
+            party={party}
+            setParty={setParty}
+            unhandleSubmit={unhandleSubmit}
+          />
         ) : (
           ""
         )}

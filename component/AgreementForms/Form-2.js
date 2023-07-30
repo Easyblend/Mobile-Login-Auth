@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
 
 const Form_2 = ({ handleSubmit, unhandleSubmit, party, setParty }) => {
-  console.log(party);
   const [partyData, setPartyData] = useState([]);
 
   useEffect(() => {

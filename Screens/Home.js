@@ -1,5 +1,4 @@
-import { onAuthStateChanged } from "firebase/auth";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Image,
   SafeAreaView,

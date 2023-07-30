@@ -6,10 +6,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import Register from "./Screens/register";
 import Home from "./Screens/Home";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./config/firebaseConfig";
+
 import CustomDrawer from "./component/CustomDrawer";
-import { View } from "react-native";
+
 import { FontAwesome } from "@expo/vector-icons";
 import Setting from "./Screens/Setting";
 import CreateDoc from "./Screens/CreateDoc";
@@ -18,14 +17,13 @@ import lawNews from "./Screens/LawNews";
 import DocumentForm from "./Screens/DocumentForm";
 
 const MyTextInput = () => {
-  const [singIn, setSignIn] = useState(false);
   const Drawer = createDrawerNavigator();
 
   return (
     <NavigationContainer>
       <Drawer.Navigator
-        initialRouteName="Welcome"
         drawerContent={(props) => <CustomDrawer {...props} />}
+        initialRouteName="welcome"
         screenOptions={{
           drawerActiveBackgroundColor: "#222",
           drawerActiveTintColor: "white",
@@ -34,6 +32,17 @@ const MyTextInput = () => {
           drawerType: "front",
         }}
       >
+        <Drawer.Screen
+          key="welcome"
+          name="welcome"
+          component={Welcome}
+          options={{
+            drawerIcon: ({ color }) => (
+              <FontAwesome name="sign-in" size={24} color="#aaa" />
+            ),
+            swipeEnabled: false,
+          }}
+        />
         <Drawer.Screen
           key="home"
           name="Home"
@@ -76,17 +85,7 @@ const MyTextInput = () => {
             swipeEnabled: false,
           }}
         />
-        <Drawer.Screen
-          key="welcome"
-          name="welcome"
-          component={Welcome}
-          options={{
-            drawerIcon: ({ color }) => (
-              <FontAwesome name="sign-in" size={24} color="#aaa" />
-            ),
-            swipeEnabled: false,
-          }}
-        />
+
         <Drawer.Screen
           key="CreateDoc"
           name="CreateDoc"

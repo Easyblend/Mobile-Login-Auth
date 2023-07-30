@@ -22,12 +22,12 @@ const CustomDrawer = (props) => {
   };
 
   // Check if there is no user data and navigate to login screen
-  useEffect(() => {
-    // Check if there is no user data and navigate to login screen
-    if (!data) {
-      props.navigation.navigate("login");
-    }
-  }, [data, props.navigation]);
+  // useEffect(() => {
+  //   // Check if there is no user data and navigate to login screen
+  //   if (!data) {
+  //     props.navigation.navigate("login");
+  //   }
+  // }, [data, props.navigation]);
 
   const isItemActive = (routeName) => {
     const currentRouteName = props.state.routes[props.state.index].name;

@@ -12,7 +12,7 @@ const userHook = () => {
 
     // Clean up the subscription when the component unmounts
     return () => unsubscribe();
-  }, []); // Only run the effect once, when the component mounts
+  }); // Only run the effect once, when the component mounts
 
   return {
     data,

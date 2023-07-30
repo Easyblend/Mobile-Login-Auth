@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { View } from "react-native";
-import { ImageBackground } from "react-native";
-import { Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FontAwesome } from "@expo/vector-icons";
 import NewsBox from "../component/NewsBox";
-import { ScrollView, RefreshControl } from "react-native";
+import {
+  View,
+  ScrollView,
+  RefreshControl,
+  ActivityIndicator,
+  ImageBackground,
+  Text,
+} from "react-native";
 import qs from "qs";
 
-const LawNews = ({ navigation }) => {
+const LawNews = () => {
   const query = [
     "law",
     "legal",
@@ -130,11 +133,11 @@ const LawNews = ({ navigation }) => {
               alignContent: "center",
               justifyContent: "center",
               alignItems: "center",
+              flex: 2,
+              top: 200,
             }}
           >
-            <Text style={{ color: "black", fontSize: 30 }}>
-              An Error occured
-            </Text>
+            <ActivityIndicator size="large" color="#000" />
           </View>
         )}
       </ScrollView>
