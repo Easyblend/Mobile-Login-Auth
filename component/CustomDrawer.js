@@ -122,6 +122,26 @@ const CustomDrawer = (props) => {
             }
           />
           <DrawerItem
+            label="Library"
+            icon={() => (
+              <FontAwesome
+                name="book"
+                size={27}
+                style={{ marginRight: -10 }}
+                color="#444"
+              />
+            )}
+            onPress={() => props.navigation.navigate("library")}
+            labelStyle={
+              isItemActive("library")
+                ? styles.activeLabel
+                : styles.inactiveLabel
+            }
+            style={
+              isItemActive("library") ? styles.activeItem : styles.inactiveItem
+            }
+          />
+          <DrawerItem
             label="Law News"
             icon={() => (
               <FontAwesome

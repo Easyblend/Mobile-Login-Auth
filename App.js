@@ -15,6 +15,7 @@ import CreateDoc from "./Screens/CreateDoc";
 import SpeakToLawyer from "./Screens/SpeakToLawyer";
 import lawNews from "./Screens/LawNews";
 import DocumentForm from "./Screens/DocumentForm";
+import Library from "./Screens/Library";
 
 const MyTextInput = () => {
   const Drawer = createDrawerNavigator();
@@ -100,6 +101,16 @@ const MyTextInput = () => {
           key="SpeakToLawyer"
           name="SpeakToLawyer"
           component={SpeakToLawyer}
+          options={{
+            drawerIcon: ({ color }) => (
+              <FontAwesome name="files-o" size={24} color="#aaa" />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          key="library"
+          name="library"
+          component={Library}
           options={{
             drawerIcon: ({ color }) => (
               <FontAwesome name="files-o" size={24} color="#aaa" />
